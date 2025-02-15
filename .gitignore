@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment files
+environment.yml
+*.env
+
+# Data files (if not sharing)
+data/raw/
+
+# Logs and models
+logs/
+models/
+
+# OS-specific files
+.DS_Store
