@@ -3,11 +3,10 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-import src
 # Import your modules
-# from src.data_preprocessing import load_raw_data, preprocess_data, save_processed_data
-# from src.model_scratch import LinearRegressionScratch
-# from src.model_lib import train_model, evaluate_model
+from src.data_preprocessing import load_raw_data, preprocess_data, save_processed_data
+from src.model_scratch import LinearRegressionScratch
+from src.model_lib import train_model, evaluate_model
 
 # Calculate base directory for consistency
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -43,7 +42,7 @@ def main():
 
     # --- Approach 1: From Scratch ---
     print("Training using from-scratch implementation...")
-    model_scratch = src.model_scratch.LinearRegressionScratch(learning_rate=0.01, n_iterations=1000)
+    model_scratch = LinearRegressionScratch(learning_rate=0.01, n_iterations=1000)
     model_scratch.fit(X_train, y_train)
     predictions_scratch = model_scratch.predict(X_test)
     mse_scratch = np.mean((predictions_scratch - y_test) ** 2)
@@ -51,8 +50,8 @@ def main():
 
     # --- Approach 2: Using scikit-learn ---
     print("Training using scikit-learn implementation...")
-    model_lib = src.model_lib.train_model(X_train, y_train)
-    mse_lib, predictions_lib = src.model_lib.evaluate_model(model_lib, X_test, y_test)
+    model_lib = train_model(X_train, y_train)
+    mse_lib, predictions_lib = evaluate_model(model_lib, X_test, y_test)
     print("Library Model MSE:", mse_lib)
 
 if __name__ == "__main__":
